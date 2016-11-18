@@ -1,0 +1,120 @@
+body {
+    padding: 30px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.info_block {
+    padding: 20px;
+    background: #e3e3e3;
+    margin-bottom: 5px;
+}
+
+.top_line_caption {
+    text-align: left;
+    padding-left: 30px;
+    font-weight: bolder;
+}
+
+.file_line_caption {
+    text-align: left;
+    padding-left: 30px;
+    font-weight: bolder;
+    padding-top: 10px;
+}
+
+.fileform {
+    background-color: #FFFFFF;
+    border: 1px solid #9f9f9f;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 35px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+}
+
+
+.fileform #upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -moz-opacity: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    font-size: 150px;
+    height: 35px;
+    z-index: 20;
+}
+
+
+.fileform #fileformlabel {
+    background-color: #FFFFFF;
+    float: left;
+    height: 30px;
+    line-height: 22px;
+    overflow: hidden;
+    padding: 2px;
+    text-align: left;
+    vertical-align: middle;
+    width: 70%;
+}
+
+.fileform .selectbutton {
+    background-color: #ffffff;
+    border: 1px solid #9f9f9f;
+    border-radius: 2px;
+    color: #000000;
+    float: right;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 2px 6px;
+    text-align: center;
+    vertical-align: middle;
+    width: 70px;
+}
+
+.import_start_button {
+    background-color: #ffffff;
+    border: 1px solid #9f9f9f;
+    border-radius: 2px;
+    color: #000000;
+    float: right;
+    font-size: 16px;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
+    padding: 2px 6px;
+    text-align: center;
+    vertical-align: middle;
+    width: 160px;
+
+}
+
+.import_start_button:disabled {
+    background-color: #E3E3E3;
+    color: #bbbbbb;
+}
+
+.result_caption {
+    text-align: left;
+    padding-left: 30px;
+    font-weight: bolder;
+}
+
+.result_info {
+    background-color: #e9eaea;
+    border: 1px solid #9f9f9f;
+    border-radius: 2px;
+    margin: 5px 20px;
+    padding: 10px;
+}
