@@ -12,8 +12,9 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.OPENSHIFT_NODEJS_PORT || '3000');
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+
 app.set('port', port);
 console.log("Port from env =  " + process.env.OPENSHIFT_NODEJS_PORT)
 console.log("Address from env = " + process.env.OPENSHIFT_NODEJS_IP);
@@ -28,32 +29,12 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, server_ip_address, function () {
-    console.log("Listening on " + server_ip_address + ", port " + port)
+server.listen(port, ipaddress, function () {
+    console.log("Listening on " + ipaddress + ", port " + port)
 });
 
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-    var port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
-    if (port >= 0) {
-        // port number
-        return port;
-    }
-
-    return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
