@@ -7,11 +7,6 @@ var firebase = require("firebase");
 var count;
 var datetime;
 
-firebase.initializeApp({
-  serviceAccount: "./config/freeccee-9af37010c8a7.json",
-  databaseURL: "https://freeccee.firebaseio.com"
-});
-
 router.get('/', function(req, res, next) {
   count = undefined;
   datetime = undefined;
