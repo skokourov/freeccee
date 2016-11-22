@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-
+var fcommon = require('./fcommon');
 
 var firebase = require("firebase");
 
@@ -18,9 +18,8 @@ var app = express();
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-if (!fileExists("./config/sa.json")) {
+if (!fcommon.fileExists("./config/sa.json")) {
     var conf = process.env.FB_CONFIG;
-    console.log("Firebase config:" + conf);
     fs.writeFile("./config/sa.json", conf, function(err) {
         if(err) {
             return console.log(err);
@@ -63,14 +62,5 @@ app.use(function (req, res, next) {
     err.status = 404;
     next(err);
 });
-
-function fileExists(filePath) {
-    try {
-        return fs.statSync(filePath).isFile();
-    }
-    catch (err) {
-        return false;
-    }
-}
 
 module.exports = app;

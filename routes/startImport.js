@@ -2,8 +2,22 @@ var express = require('express');
 var firebase = require("firebase");
 var XLSX = require("xlsx");
 var moment = require('moment');
+var fcommon = require('./../fcommon');
 
 var router = express.Router();
+
+var fs = require('fs');
+
+if (!fcommon.fileExists('./config/format.json')) {
+    var fmt = process.env.FC_FORMAT;
+    fs.writeFile('./config/format.json', fmt, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+    });
+}
+
+var format = JSON.parse(fs.readFileSync('./config/format.json', 'utf8'));
 
 var Multer = require('multer');
 var multer = Multer({
@@ -37,6 +51,10 @@ function processExcel(dataArray, id) {
     }
     var sheet_name_list = workbook.SheetNames;
     var worksheet = workbook.Sheets[sheet_name_list[0]];
+    if (!checkFileStructure(worksheet)) {
+        writeErrorResults(id, "Выбранный файл содержит неверные данные о структуре.")
+        return undefined;
+    }
     var ln = 4;
     var procMap = [];
     do {
@@ -139,6 +157,14 @@ function writeErrorResults(id, text) {
 }
 
 function checkFileStructure(worksheet) {
+    const lit = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    for(var i = 0; i < format.columns.length; i++){
+        cell = worksheet[lit[i] + 1];
+        var value = cell !== undefined ? cell.w: "";
+        if (value !== format.columns[i]) {
+            return false;
+        }
+    }
     return true;
 }
 
