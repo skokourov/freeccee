@@ -8,16 +8,20 @@ var router = express.Router();
 
 var fs = require('fs');
 
+var format = {columns:[]};
+
 if (!fcommon.fileExists('./config/format.json')) {
     var fmt = process.env.FC_FORMAT;
+    format = JSON.parse(fmt);
     fs.writeFile('./config/format.json', fmt, function(err) {
         if(err) {
             return console.log(err);
         }
     });
+} else {
+    format = JSON.parse(fs.readFileSync('./config/format.json', 'utf8'));
 }
 
-var format = JSON.parse(fs.readFileSync('./config/format.json', 'utf8'));
 
 var Multer = require('multer');
 var multer = Multer({
