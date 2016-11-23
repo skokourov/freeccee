@@ -33,6 +33,7 @@ class FileUpload extends React.Component {
                     this.props.onStartImport(res.data.id);
                 })
                 .catch(function (err) {
+                    this.props.onStartImportFailed("Запуск импорта не удался. Сервер недоступен.");
                     console.log(err);
                 });
         }

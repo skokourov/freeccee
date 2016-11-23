@@ -35,6 +35,11 @@ class Result extends React.Component {
             }).catch(processGetResultError);
     }
 
+    showResult(text) {
+        this.setState({info: text});
+        this.props.onFinishImport();
+    }
+
     render() {
         return (
             <div className="row info_block">
